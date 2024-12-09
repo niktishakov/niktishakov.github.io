@@ -9,12 +9,12 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # This is important!
+      contents: write 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.TOKEN }}  # Use the default TOKEN
+          token: ${{ secrets.TOKEN }} 
       
       - name: Create config file
         run: |
@@ -25,4 +25,4 @@ jobs:
         with:
           folder: .
           branch: gh-pages
-          token: ${{ secrets.TOKEN }}  # Use the default GITHUB_TOKEN
+          token: ${{ secrets.TOKEN }} 

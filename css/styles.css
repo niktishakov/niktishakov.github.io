@@ -28,6 +28,16 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+    scrollbar-gutter: stable;
+}
+
+.page-wrapper {
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -36,13 +46,16 @@ body {
 
 /* Navigation */
 .navbar {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    left: 0;
+    right: 0;
+    padding-right: 0;
+    transition: padding-right 0.3s ease;
 }
 
 .navbar .container {
@@ -51,6 +64,8 @@ body {
     align-items: center;
     height: 64px;
     padding: 0 2rem;
+    max-width: calc(1200px - var(--scrollbar-width, 0px));
+    transition: max-width 0.3s ease;
 }
 
 .logo {
@@ -233,41 +248,64 @@ body {
     gap: 1rem;
     justify-content: center;
     margin-top: 2rem;
+    align-items: center;
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.875rem 1.75rem;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: 500;
-    border-radius: 6px;
-    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 160px;
+    text-decoration: none;
+    white-space: nowrap;
+    min-width: fit-content;
 }
 
+/* Primary button (View My Work) */
 .btn-primary {
-    background: var(--text-primary);
-    color: var(--dark-bg);
+    background: var(--primary-color);
+    color: var(--text-primary);
     border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-primary);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    
+    background: rgba(0, 122, 204, 0.8);
+    color: var(--text-primary);
 }
 
-.btn-secondary {
+.btn-outline {
     background: transparent;
     color: var(--text-primary);
-    border: 2px solid var(--text-primary);
+    border: 2px solid var(--light-bg);
+}
+
+.btn-outline:hover {
+    background: var(--light-bg);
+    color: var(--text-color);
+    border: 2px solid var(--light-bg);
+}
+
+
+
+/* Secondary button (Start a Project) */
+.btn-secondary {
+    background: white;
+    color: #1A1E23;
+    border: 2px solid var(--light-bg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ensure same height accounting for border */
+    height: 52px;
+    margin: 2px 0; /* Add margin to compensate for border difference */
+    font-family: var(--font-primary);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
 }
 
@@ -275,12 +313,12 @@ body {
 @media (max-width: 768px) {
     .cta-buttons {
         flex-direction: column;
-        padding: 0 1rem;
+        align-items: center;
     }
 
     .btn {
-        width: 100%;
-        justify-content: center;
+        width: auto;
+        min-width: 200px;
     }
 }
 
@@ -292,6 +330,7 @@ body {
 .section-title {
     text-align: center;
     margin-bottom: 3rem;
+    line-height: 1.0;
 }
 
 /* Features grid */
@@ -581,4 +620,214 @@ body {
     font-weight: 500;
     white-space: nowrap;
     text-decoration: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
+  pointer-events: none;
+  padding-right: var(--scrollbar-width, 0px);
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 3rem;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  transform: translateY(-100px);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  max-height: 90vh;
+  overflow-y: auto;
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+      display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.close-button {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #666;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-button:hover {
+    border-color: #333;
+    color: #333;
+    transform: rotate(90deg);
+}
+
+/* Optional: Add focus state for accessibility */
+.close-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.3);
+}
+
+/* Prevent body scrolling when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Add padding to the modal content instead */
+.modal-content {
+  /* ... existing styles ... */
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  /* Add max-height and overflow for long content */
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Add this class for when modal is open */
+body.modal-open .navbar {
+    padding-right: var(--scrollbar-width, 0px);
+}
+
+/* Form styles */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    color: #1A1E23;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #FAFAFA;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 122, 204, 0.1);
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: #999;
+    background-color: #fff;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+}
+
+.btn.btn-primary {
+    justify-content: center;
 } 
+
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn.loading {
+    background-color: #ccc;
+    pointer-events: none;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-content .section-title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #1A1E23;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+.modal-content .section-subtitle {
+    font-size: 1.125rem;
+    color: #666;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* Add this if needed to adjust form group spacing */
+.form-group:first-of-type {
+    margin-top: 0.5rem;
+}

@@ -3,48 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nik Tishakov - Mobile Engineer | Building scalable and high-performance apps with Flutter & React Native">
   <title>Nik Tishakov | Mobile Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      color: #333;
-    }
-    header {
-      background: #007acc;
-      color: white;
-      padding: 2em;
-    }
-    header h1 {
-      margin: 0;
-    }
-    main {
-      padding: 2em;
-    }
-    footer {
-      background: #f8f8f8;
-      padding: 1em;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Nik Tishakov</h1>
-    <p>Mobile Engineer | Flutter & React Native Expert</p>
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">NT</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1>Building Tomorrow's Mobile Experiences</h1>
+      <p class="subtitle">Mobile Engineer specializing in Flutter & React Native</p>
+      <div class="cta-buttons">
+        <a href="#features" class="btn btn-primary">Explore Features</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+    </div>
   </header>
+
   <main>
-    <p>Welcome to my portfolio! Here, you’ll find my projects, blogs, and professional achievements.</p>
-    <a href="https://github.com/NikTishakov" target="_blank">GitHub</a> | 
-    <a href="https://linkedin.com/in/NikTishakov" target="_blank">LinkedIn</a>
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section-title">Features I Can Build for You</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>AI-Driven Applications</h3>
+            <p>Integrate intelligent chatbots and AI-powered personalization into your apps for better engagement and user experience.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Cross-Platform Development</h3>
+            <p>Deliver high-quality apps for iOS, Android, and Web, ensuring consistent performance across all platforms.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Custom Animations</h3>
+            <p>Create visually stunning animations to make your apps stand out with interactive and unique designs.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Performance Optimization</h3>
+            <p>Improve load times and app performance with optimized architectures and seamless CI/CD pipelines.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Revenue and Analytics</h3>
+            <p>Integrate monetization strategies and track user behavior with analytics tools for data-driven decisions.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Native Integrations</h3>
+            <p>Implement advanced system-level features such as app shortcuts and fine-grained permission handling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="portfolio-grid">
+          <!-- Portfolio items will go here -->
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Let's Work Together</h2>
+        <div class="contact-content">
+          <!-- Contact form will go here -->
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer>
-    <p>&copy; 2024 Nik Tishakov</p>
+    <div class="container">
+      <p>&copy; 2024 Nik Tishakov</p>
+      <div class="social-links">
+        <a href="https://github.com/niktishakov" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/niktishakov" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
